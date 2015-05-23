@@ -30,8 +30,6 @@ module.exports = require('enb/lib/build-flow').create()
             return bemxjstProcessor.process(source, {
                     wrap: true,
                     exportName: this._exportName,
-                    optimize: !this._devMode,
-                    cache: !this._devMode && this._cache,
                     modulesDeps: this._modulesDeps
                 })
                 .then(function (res) {

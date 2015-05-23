@@ -13,21 +13,19 @@
  *   (его предоставляет технология `files`). По умолчанию — `?.files`.
  * * *String* **sourceSuffixes** — суффиксы файлов, по которым строится `files`-таргет. По умолчанию — `['bemtree']`.
  * * *String* **exportName** — Имя переменной-обработчика BEMTREE. По умолчанию — `'BEMTREE'`.
- * * *Boolean* **devMode** — Development-режим. По умолчанию — true.
  * * *Object* **modulesDeps** — Хэш-объект, прокидывающий в генерируемую для скомпилированных шаблонов обвязку,
  *    необходимые YModules-модули.
  *
  * **Пример**
  *
  * ```javascript
- * nodeConfig.addTech([ require('enb-bemxjst/techs/bemtree'), { devMode: false } ]);
+ * nodeConfig.addTech([ require('enb-bemxjst/techs/bemtree') ]);
  * ```
  */
 module.exports = require('./bem-xjst').buildFlow()
     .name('bemtree')
     .target('target', '?.bemtree.js')
     .defineOption('exportName', 'BEMTREE')
-    .defineOption('devMode', true)
     .defineOption('modulesDeps')
     .useFileList(['bemtree'])
     .builder(function (sourceFiles) {

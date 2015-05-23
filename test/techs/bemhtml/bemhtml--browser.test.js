@@ -52,7 +52,6 @@ function runTest(testContent, options, template) {
 
     return bundle.runTechAndGetContent(Tech, options)
         .spread(function (bemhtml) {
-            // console.log('bemhtml', bemhtml.toString());
             // TODO: удалить, когда пофиксится https://github.com/enb-make/enb/issues/224
             fs.writeFileSync('bundle/bundle.bemhtml.js', bemhtml);
 

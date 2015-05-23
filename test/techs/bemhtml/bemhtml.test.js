@@ -1,7 +1,4 @@
-var fs = require('fs'),
-    path = require('path'),
-    vow = require('vow'),
-    mock = require('mock-fs'),
+var mock = require('mock-fs'),
     TestNode = require('enb/lib/test/mocks/test-node'),
     Tech = require('../../../techs/bemhtml'),
     FileList = require('enb/lib/file-list');
