@@ -4,7 +4,6 @@ var fs = require('fs'),
     TestNode = require('enb/lib/test/mocks/test-node'),
     FileList = require('enb/lib/file-list'),
     Tech = require('../../../techs/bemhtml'),
-    bemhtmlCoreFilename = path.join(__dirname, '..', '..', 'fixtures', 'i-bem.bemhtml'),
     htmlFilename = path.join(__dirname, '..', '..', 'fixtures', 'bemhtml', 'browser--ym.html'),
     mochaFilename = require.resolve('mocha/mocha.js'),
     chaiFilename = require.resolve('chai/chai.js'),
@@ -47,7 +46,6 @@ function runTest(testContent, options, template, lib) {
 
         scheme = {
             blocks: {
-                'base.bemhtml': fs.readFileSync(bemhtmlCoreFilename, 'utf-8'),
                 'bla.bemhtml': template || 'block("bla").tag()("a")'
             },
             bundle: {},

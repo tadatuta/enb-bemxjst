@@ -4,7 +4,6 @@ var fs = require('fs'),
     TestNode = require('enb/lib/test/mocks/test-node'),
     FileList = require('enb/lib/file-list'),
     Tech = require('../../../techs/bemhtml'),
-    bemhtmlCoreFilename = path.join(__dirname, '..', '..', 'fixtures', 'i-bem.bemhtml'),
     htmlFilename = path.join(__dirname, '..', '..', 'fixtures', 'bemhtml', 'browser.html'),
     mochaFilename = require.resolve('mocha/mocha.js'),
     chaiFilename = require.resolve('chai/chai.js'),
@@ -35,7 +34,6 @@ function runTest(testContent, options, template) {
 
         scheme = {
             blocks: {
-                'base.bemhtml': fs.readFileSync(bemhtmlCoreFilename, 'utf-8'),
                 'bla.bemhtml': template || 'block("bla").tag()("a")'
             },
             bundle: {},
@@ -54,6 +52,7 @@ function runTest(testContent, options, template) {
 
     return bundle.runTechAndGetContent(Tech, options)
         .spread(function (bemhtml) {
+            // console.log('bemhtml', bemhtml.toString());
             // TODO: удалить, когда пофиксится https://github.com/enb-make/enb/issues/224
             fs.writeFileSync('bundle/bundle.bemhtml.js', bemhtml);
 
