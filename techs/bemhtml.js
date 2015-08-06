@@ -28,8 +28,13 @@ module.exports = require('./bem-xjst').buildFlow()
     .target('target', '?.bemhtml.js')
     .defineOption('exportName', 'BEMHTML')
     .defineOption('modulesDeps')
-    .useFileList(['bemhtml', 'bemhtml.xjst'])
+    .useFileList(['bemhtml.js', 'bemhtml', 'bemhtml.xjst'])
     .builder(function (sourceFiles) {
+        // remove base templates as they are inside bem-xjst since 2.x
+        var iBemBemhtmlRegEx = /^i-bem(__html)?\.bemhtml(\.js)?$/;
+        sourceFiles = sourceFiles.filter(function (file) {
+            return !iBemBemhtmlRegEx.test(file.name);
+        });
         return this._sourceFilesProcess(sourceFiles);
     })
     .createTech();
