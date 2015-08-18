@@ -28,6 +28,7 @@ module.exports = require('./bem-xjst').buildFlow()
     .target('target', '?.bemhtml.js')
     .defineOption('exportName', 'BEMHTML')
     .defineOption('modulesDeps')
+    .defineOption('naming')
     .useFileList(['bemhtml.js', 'bemhtml', 'bemhtml.xjst'])
     .builder(function (sourceFiles) {
         // remove base templates as they are inside bem-xjst since 2.x
