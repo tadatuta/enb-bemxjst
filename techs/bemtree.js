@@ -47,7 +47,7 @@ module.exports = require('./bem-xjst').buildFlow()
     .name('bemtree')
     .target('target', '?.bemtree.js')
     .defineOption('exportName', 'BEMTREE')
-    .defineOption('engin', 'BEMTREE')
+    .defineOption('engine', 'BEMTREE')
     .defineOption('naming')
     .defineOption('requires', {})
     .useFileList(['bemtree.js'])
@@ -61,7 +61,9 @@ module.exports = require('./bem-xjst').buildFlow()
 
         return this._readFiles(filenames)
             .then(this._processSources, this)
-            .then(this._compileBEMXJST, this);
+            .then(function(sources) {
+                return this._compileBEMXJST(sources, 'bemtree');
+            }, this);
     })
     .methods({
         /**
@@ -74,7 +76,8 @@ module.exports = require('./bem-xjst').buildFlow()
             var code = 'exports.apply = function () { return ""; };';
 
             return bundle.compile(code, {
-                exportName: this._exportName
+                exportName: this._exportName,
+                engine: this._engine
             });
         }
     })

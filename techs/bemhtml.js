@@ -58,7 +58,9 @@ module.exports = require('./bem-xjst').buildFlow()
 
         return this._readFiles(filenames)
             .then(this._processSources, this)
-            .then(this._compileBEMXJST, this);
+            .then(function(sources) {
+                return this._compileBEMXJST(sources, 'bemhtml');
+            }, this);
     })
     .methods({
         /**
