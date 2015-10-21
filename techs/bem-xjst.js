@@ -4,7 +4,7 @@ var EOL = require('os').EOL,
     enb = require('enb'),
     vfs = enb.asyncFs || require('enb/lib/fs/async-fs'),
     buildFlow = enb.buildFlow || require('enb/lib/build-flow'),
-    I_BEM_REG_EX = /^i-bem(__html)?\.bemhtml(\.js)?$/;
+    I_BEM_REG_EX = /^i-bem(__html)?\.bem(html|tree)(\.js)?$/;
 
 /**
  * @class BemxjstTech
@@ -116,9 +116,9 @@ module.exports = buildFlow.create()
          * @returns {Promise}
          * @private
          */
-        _compileBEMXJST: function (sources) {
+        _compileBEMXJST: function (sources, engine) {
             var queue = this.node.getSharedResources().jobQueue,
-                compilerFilename = path.resolve(__dirname, '../lib/bemxjst-processor'),
+                compilerFilename = path.resolve(__dirname, '../lib/' + engine + '-processor'),
                 compilerOptions = {
                     wrap: false,
                     naming: this._naming
